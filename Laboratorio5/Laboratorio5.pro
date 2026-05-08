@@ -5,7 +5,9 @@ CONFIG -= qt
 
 SOURCES += \
         main.cpp \
-        particula.cpp
+        particula.cpp \
+        vector2d.cpp
 
 HEADERS += \
-    particula.h
+        particula.h \
+        vector2d.h
