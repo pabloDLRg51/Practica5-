@@ -23,15 +23,15 @@ public:
 
     void colisionPared(float ancho, float alto);
 
-    Vector2D getPosicion();
+    Vector2D getPosicion() const;
 
-    Vector2D getVelocidad();
+    Vector2D getVelocidad() const;
 
-    float getMasa();
+    float getMasa() const;
 
-    float getRadio();
+    float getRadio() const;
 
-    bool estaActiva();
+    bool estaActiva() const;
 
     void desactivar();
 

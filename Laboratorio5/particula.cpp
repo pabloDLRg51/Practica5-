@@ -14,6 +14,14 @@ Particula::Particula(Vector2D posicion,Vector2D velocidad,float masa, float radi
 //fisica usada
 void Particula::mover(float dt){
 
+    //gravedad
+    velocidad.setY(
+        velocidad.getY() + 9.8 * dt
+        );
+
+
+
+    //actualizar posicion
     posicion = posicion + velocidad * dt;
 }
 //colision
@@ -32,24 +40,24 @@ void Particula::colisionPared(float ancho, float alto){
     }
 }
 //getters
-Vector2D Particula::getPosicion(){
+Vector2D Particula::getPosicion() const{
 
     return posicion;
 }
-Vector2D Particula::getVelocidad(){
+Vector2D Particula::getVelocidad() const{
 
     return velocidad;
 }
-float Particula::getMasa(){
+float Particula::getMasa() const{
 
     return masa;
 }
-float Particula::getRadio(){
+float Particula::getRadio() const{
 
     return radio;
 }
 //Control
-bool Particula::estaActiva(){
+bool Particula::estaActiva() const{
 
     return activa;
 }

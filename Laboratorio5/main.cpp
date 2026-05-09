@@ -1,128 +1,74 @@
-#include <iostream>
-#include "vector2d.h"
-
-using namespace std;
+#include "Simulador.h"
 
 int main(){
 
-    // =========================
-    // CREACION DE VECTORES
-    // =========================
+    Simulador simulador(
+        0.1,
+        10,
+        800,
+        600
+        );
 
-    Vector2D v1(3,4);
-    Vector2D v2(1,2);
 
-    cout << "Vector v1: ";
-    v1.imprimir();
 
-    cout << "Vector v2: ";
-    v2.imprimir();
+    //PARTICULA 1
+    //se mueve hacia la derecha
+    //fusionara con p2
+    Particula p1(
+        Vector2D(200,300),
+        Vector2D(20,0),
+        10,
+        15
+        );
 
-    // =========================
-    // SUMA
-    // =========================
-
-    Vector2D suma = v1 + v2;
-
-    cout << "\nSuma v1 + v2: ";
-    suma.imprimir();
-
-    // =========================
-    // RESTA
-    // =========================
-
-    Vector2D resta = v1 - v2;
-
-    cout << "\nResta v1 - v2: ";
-    resta.imprimir();
-
-    // =========================
-    // MULTIPLICACION ESCALAR
-    // =========================
-
-    Vector2D multiplicacion = v1 * 2;
-
-    cout << "\nv1 * 2: ";
-    multiplicacion.imprimir();
-
-    // =========================
-    // DIVISION ESCALAR
-    // =========================
-
-    Vector2D division = v1 / 2;
-
-    cout << "\nv1 / 2: ";
-    division.imprimir();
-
-    // =========================
-    // MAGNITUD
-    // =========================
-
-    cout << "\nMagnitud de v1: "
-         << v1.magnitud()
-         << endl;
-
-    // =========================
-    // NORMALIZACION
-    // =========================
-
-    Vector2D normal = v1.normalizar();
-
-    cout << "\nVector normalizado de v1: ";
-    normal.imprimir();
-
-    cout << "Magnitud del normalizado: "
-         << normal.magnitud()
-         << endl;
-
-    // =========================
-    // PRODUCTO PUNTO
-    // =========================
-
-    double productoPunto = v1.dot(v2);
-
-    cout << "\nProducto punto v1·v2: "
-         << productoPunto
-         << endl;
-
-    // =========================
-    // DISTANCIA
-    // =========================
-
-    double distancia = v1.distancia(v2);
-
-    cout << "\nDistancia entre v1 y v2: "
-         << distancia
-         << endl;
-
-    // =========================
-    // OPERADORES COMPUESTOS
-    // =========================
-
-    Vector2D v3(5,5);
-
-    cout << "\nVector v3 inicial: ";
-    v3.imprimir();
-
-    v3 += v1;
-
-    cout << "v3 despues de += v1: ";
-    v3.imprimir();
-
-    v3 -= v2;
-
-    cout << "v3 despues de -= v2: ";
-    v3.imprimir();
-
-    v3 *= 2;
-
-    cout << "v3 despues de *= 2: ";
-    v3.imprimir();
-
-    v3 /= 2;
-
-    cout << "v3 despues de /= 2: ";
-    v3.imprimir();
+    //PARTICULA 2
+    //se mueve hacia la izquierda
+    //fusionara con p1
+    Particula p2(
+        Vector2D(600,300),
+        Vector2D(-20,0),
+        8,
+        15
+        );
+    //PARTICULA 3
+    //sube verticalmente
+    //rebota contra el techo
+    Particula p3(
+        Vector2D(100,550),
+        Vector2D(0,-150),
+        12,
+        20
+        );
+    //PARTICULA 4
+    //trayectoria parabólica diagonal
+    //golpeara obstaculo
+    Particula p4(
+        Vector2D(500,500),
+        Vector2D(25,-45),
+        6,
+        10
+        );
+    simulador.agregarParticula(p1);
+    simulador.agregarParticula(p2);
+    simulador.agregarParticula(p3);
+    simulador.agregarParticula(p4);
+    //OBSTACULO CENTRAL
+    Obstaculo o1(
+        Vector2D(350,250),
+        100,
+        100,
+        0.7
+        );
+    //OBSTACULO SUPERIOR DERECHO
+    Obstaculo o2(
+        Vector2D(600,120),
+        80,
+        80,
+        0.5
+        );
+    simulador.agregarObstaculo(o1);
+    simulador.agregarObstaculo(o2);
+    simulador.ejecutar("datos.txt");
 
     return 0;
 }
