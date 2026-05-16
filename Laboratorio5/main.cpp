@@ -8,9 +8,6 @@ int main(){
         800,
         600
         );
-
-
-
     //PARTICULA 1
     //se mueve hacia la derecha
     //fusionara con p2
